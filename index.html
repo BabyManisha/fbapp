@@ -69,7 +69,7 @@
 			//       }
 			//     }
 			// );
-			$.getJSON('https://graph.facebook.com/'+name+'/friends?limit=100', function(mydata) {
+			$.getJSON('https://graph.facebook.com/'+userId+'/friends?limit=100', function(mydata) {
 			        var output="<ul>";
 			        for (var i in mydata.data) {
 			            output+="<li>NAME : " + mydata.data[i].name + "<br/>ID : " + mydata.data[i].id + "</li>";
