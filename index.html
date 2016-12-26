@@ -61,29 +61,31 @@
 			});
 		}
 		function getFriends() {
-			// FB.api(
-			//     "/"+userId+"/friends",
-			//     function (response) {
-			//       if (response && !response.error) {
-			//         /* handle the result */
-			//       }
-			//     }
-			// );
-			$.getJSON('https://graph.facebook.com/'+userId+'/friends?limit=100', function(mydata) {
-			        var output="<ul>";
-			        for (var i in mydata.data) {
-			            output+="<li>NAME : " + mydata.data[i].name + "<br/>ID : " + mydata.data[i].id + "</li>";
-			        }
+			FB.api(
+			    "/"+userId+"/friends",
+			    function (response) {
+			    	console.log(response);
+			      if (response && !response.error) {
+			        /* handle the result */
+			        document.getElementById('status').innerHTML = response['summary']['total_count'];
+			      }
+			    }
+			);
+			// $.getJSON('https://graph.facebook.com/'+userId+'/friends?limit=100', function(mydata) {
+			//         var output="<ul>";
+			//         for (var i in mydata.data) {
+			//             output+="<li>NAME : " + mydata.data[i].name + "<br/>ID : " + mydata.data[i].id + "</li>";
+			//         }
 
-			        output+="</ul>";
-			        document.getElementById("placeholder").innerHTML=output;
-			    });
+			//         output+="</ul>";
+			//         document.getElementById("placeholder").innerHTML=output;
+			//     });
 		}
 	</script>
 
 	<div id="status"></div>
 	<button onclick="getInfo()">Get Info</button>
 	<button onclick="login()" id="login">Login</button>
-	<button onclick="getFriends()" id="frnds">Get Friends List</button>
+	<button onclick="getFriends()" id="frnds">Get Total Friends List</button>
 </body>
 </html>
