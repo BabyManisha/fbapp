@@ -10,6 +10,7 @@
 <body>
 	<script>
 		var userId = "";
+		var name = "";
 		// initialize and setup facebook js sdk
 		window.fbAsyncInit = function() {
 		    FB.init({
@@ -55,6 +56,7 @@
 			FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id'}, function(response) {
 				console.log(response);
 				userId = response.id;
+				name = response.name;
 				document.getElementById('status').innerHTML = response.id;
 			});
 		}
@@ -67,7 +69,7 @@
 			//       }
 			//     }
 			// );
-			$.getJSON('https://graph.facebook.com/eris.risyana/friends?limit=100&access_token=[your_access_token]', function(mydata) {
+			$.getJSON('https://graph.facebook.com/'+name+'/friends?limit=100', function(mydata) {
 			        var output="<ul>";
 			        for (var i in mydata.data) {
 			            output+="<li>NAME : " + mydata.data[i].name + "<br/>ID : " + mydata.data[i].id + "</li>";
