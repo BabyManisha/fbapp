@@ -8,6 +8,7 @@
 </head>
 <body>
 	<script>
+		var userId = "";
 		// initialize and setup facebook js sdk
 		window.fbAsyncInit = function() {
 		    FB.init({
@@ -51,13 +52,26 @@
 		// getting basic user info
 		function getInfo() {
 			FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id'}, function(response) {
+				console.log(response);
+				userId = response.id;
 				document.getElementById('status').innerHTML = response.id;
 			});
+		}
+		function getFriends() {
+			FB.api(
+			    "/{user-id}/friends",
+			    function (response) {
+			      if (response && !response.error) {
+			        /* handle the result */
+			      }
+			    }
+			);
 		}
 	</script>
 
 	<div id="status"></div>
 	<button onclick="getInfo()">Get Info</button>
 	<button onclick="login()" id="login">Login</button>
+	<button onclick="getFriends()" id="frnds">Get Friends List</button>
 </body>
 </html>
