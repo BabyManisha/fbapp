@@ -4,7 +4,6 @@ getFriendsList = function() {
                         console.log(response);
             });
 };
-alert("Hello");
 
 // The SDK loaded callback (see below)
 window.fbAsyncInit = function() {
