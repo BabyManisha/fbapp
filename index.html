@@ -59,7 +59,7 @@
 		}
 		function getFriends() {
 			FB.api(
-			    "/{user-id}/friends",
+			    "/"+userId+"/friends",
 			    function (response) {
 			      if (response && !response.error) {
 			        /* handle the result */
