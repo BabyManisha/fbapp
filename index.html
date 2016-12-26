@@ -3,7 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title></title>
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<title>SM FB APP</title>
 	<link rel="stylesheet" href="">
 </head>
 <body>
@@ -58,14 +59,23 @@
 			});
 		}
 		function getFriends() {
-			FB.api(
-			    "/"+userId+"/friends",
-			    function (response) {
-			      if (response && !response.error) {
-			        /* handle the result */
-			      }
-			    }
-			);
+			// FB.api(
+			//     "/"+userId+"/friends",
+			//     function (response) {
+			//       if (response && !response.error) {
+			//         /* handle the result */
+			//       }
+			//     }
+			// );
+			$.getJSON('https://graph.facebook.com/eris.risyana/friends?limit=100&access_token=[your_access_token]', function(mydata) {
+			        var output="<ul>";
+			        for (var i in mydata.data) {
+			            output+="<li>NAME : " + mydata.data[i].name + "<br/>ID : " + mydata.data[i].id + "</li>";
+			        }
+
+			        output+="</ul>";
+			        document.getElementById("placeholder").innerHTML=output;
+			    });
 		}
 	</script>
 
