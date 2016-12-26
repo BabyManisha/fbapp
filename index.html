@@ -49,7 +49,10 @@
 		    	} else {
 		    		document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
 		    	}
-			}, {scope: 'email'});
+			}, 
+			// {scope: 'email'}
+			{scope: "public_profile,email,user_friends" }
+			);
 		}
 		
 		// getting basic user info
